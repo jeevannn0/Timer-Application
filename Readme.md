@@ -18,8 +18,8 @@ A React Native app to manage workout timers with categories, progress tracking, 
 
 ## Screenshots 📸
 
-![Home Screen](https://via.placeholder.com/300x600?text=Home+Screen)
-![History Screen](https://via.placeholder.com/300x600?text=History+Screen)
+![Home Screen](assets/Screenshot-1.jpeg)
+![History Screen](assets/Screenshot-2.jpeg)
 
 ---
 
@@ -27,7 +27,7 @@ A React Native app to manage workout timers with categories, progress tracking, 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/jeevannn0/Timer-Application.git
+   git clone https://github.com/jeevannn0/Timer-Application
    cd workout-timer-app
    ```
 
