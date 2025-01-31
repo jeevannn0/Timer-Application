@@ -18,9 +18,8 @@ A React Native app to manage workout timers with categories, progress tracking, 
 
 ## Screenshots 📸
 
-![Home Screen](assets/Screenshot-1.jpeg)
-![History Screen](assets/Screenshot-2.jpeg)
-
+<img src="assets/Screenshot-1.jpeg" width="300" style="display:inline-block; margin-right: 10px;">
+<img src="assets/Screenshot-2.jpeg" width="300" style="display:inline-block;">
 ---
 
 ## Installation 🛠️
