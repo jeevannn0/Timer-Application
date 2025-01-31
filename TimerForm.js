@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   picker: {
     height: 40, // Reduce height
     borderColor: '#cccccc',
+    marginTop: -10,
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 15,
