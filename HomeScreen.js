@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TimerForm from './TimerForm';
 import TimerList from './TimerList';
@@ -59,7 +59,10 @@ const HomeScreen = ({ darkMode }) => {
     <View style={[styles.container, darkMode ? styles.darkContainer : styles.lightContainer]}>
       <TimerForm addTimer={addTimer} darkMode={darkMode} />
       <TimerList timers={timers} setTimers={setTimers} darkMode={darkMode} />
-      <Button title="Clear All Data" onPress={clearData} />
+
+      <TouchableOpacity style={styles.clearButton} onPress={clearData}>
+  <Text style={styles.clearButtonText}>Clear All Data</Text>
+</TouchableOpacity>
     </View>
   );
 };
@@ -67,6 +70,7 @@ const HomeScreen = ({ darkMode }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
     padding: 20,
   },
   darkContainer: {
@@ -74,6 +78,20 @@ const styles = StyleSheet.create({
   },
   lightContainer: {
     backgroundColor: '#f9f9f9',
+  },
+  clearButton: {
+    backgroundColor: '#FF4D4D', // Red background
+    paddingVertical: 12, // Vertical padding
+    paddingHorizontal: 20, // Horizontal padding
+    borderRadius: 5, // Rounded corners
+    alignItems: 'center', // Center the text
+    marginTop: 20, // Space above the button
+    marginBottom: -10,
+  },
+  clearButtonText: {
+    color: '#FFFFFF', // White text
+    fontSize: 16, // Font size
+    fontWeight: 'bold', // Bold text
   },
 });
 

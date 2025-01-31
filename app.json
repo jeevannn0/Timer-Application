@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Healthapp",
-    "slug": "Healthapp",
+    "name": "Timerapp",
+    "slug": "Timerapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

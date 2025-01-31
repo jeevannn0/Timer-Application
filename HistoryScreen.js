@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
@@ -55,11 +55,12 @@ const HistoryScreen = ({ darkMode }) => {
           </View>
         )}
       />
-      <Button 
-        title="Export Timer History" 
-        onPress={exportHistory} 
-        color={darkMode ? '#BB86FC' : '#6200ee'}
-      />
+      <TouchableOpacity
+  style={[styles.exportButton, { backgroundColor: darkMode ? '#BB86FC' : '#6200ee' }]}
+  onPress={exportHistory}
+>
+  <Text style={styles.exportButtonText}>Export Timer History</Text>
+</TouchableOpacity>
     </View>
   );
 };
@@ -85,6 +86,18 @@ const styles = StyleSheet.create({
   },
   lightTitle: {
     color: '#333',
+  },
+  exportButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  exportButtonText: {
+    color: '#FFFFFF', // White text
+    fontSize: 16, // Font size
+    fontWeight: 'bold', // Bold text
   },
   item: {
     padding: 15,

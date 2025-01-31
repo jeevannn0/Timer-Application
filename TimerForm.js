@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const TimerForm = ({ addTimer, darkMode }) => {
   const [name, setName] = useState('');
   const [duration, setDuration] = useState('');
   const [category, setCategory] = useState('Workout'); // Default to 'Workout'
-  const [warning, setWarning] = useState(''); // State to handle warning message
+  const [warning, setWarning] = useState('');
 
-  // Add a new timer
   const handleAddTimer = () => {
     if (!name || !duration || !category) {
       setWarning('Please fill in all fields!');
@@ -19,7 +17,7 @@ const TimerForm = ({ addTimer, darkMode }) => {
       setName('');
       setDuration('');
       setCategory('Workout'); // Reset category after adding
-      setWarning(''); // Clear warning after adding timer
+      setWarning('');
     }
   };
 
@@ -43,27 +41,30 @@ const TimerForm = ({ addTimer, darkMode }) => {
       />
 
       <Text style={[styles.label, darkMode ? styles.darkLabel : styles.lightLabel]}>Category</Text>
-      <Picker
-        selectedValue={category}
-        onValueChange={setCategory}
-        style={styles.picker}
-      >
-        <Picker.Item label="Workout" value="Workout" />
-        <Picker.Item label="Study" value="Study" />
-        <Picker.Item label="Break" value="Break" />
-        {/* Add more categories as needed */}
-      </Picker>
+      <View style={styles.buttonGroup}>
+        {['Workout', 'Study', 'Break'].map((item) => (
+          <TouchableOpacity
+            key={item}
+            style={[styles.categoryButton, category === item && styles.selectedCategory]}
+            onPress={() => setCategory(item)}
+          >
+            <Text style={[styles.buttonText, darkMode ? styles.darkButtonText : styles.lightButtonText]}>{item}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
       {warning ? <Text style={styles.warningText}>{warning}</Text> : null}
 
-      <Button title="Add Timer" onPress={handleAddTimer} color="#4CAF50" />
+      <TouchableOpacity style={styles.addButton} onPress={handleAddTimer}>
+        <Text style={styles.addButtonText}>Add Timer</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 20,
+    padding: 5,
     borderRadius: 8,
     elevation: 5,
   },
@@ -98,15 +99,46 @@ const styles = StyleSheet.create({
   lightLabel: {
     color: '#333',
   },
-  picker: {
-    height: 40, // Reduce height
-    borderColor: '#cccccc',
-    marginTop: -10,
-    borderWidth: 1,
-    borderRadius: 4,
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 15,
   },
-  
+  categoryButton: {
+    flex: 1,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    alignItems: 'center',
+    borderRadius: 5,
+    marginHorizontal: 5,
+  },
+  selectedCategory: {
+    backgroundColor: '#4CAF50',
+    borderColor: '#388E3C',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+  },
+  darkButtonText: {
+    color: '#ffffff',
+  },
+  lightButtonText: {
+    color: '#000000',
+  },
+  addButton: {
+    backgroundColor: '#4CAF50',
+    marginBottom: 9,
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#388E3C',
+  },
+  addButtonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
   warningText: {
     color: 'red',
     fontSize: 14,
