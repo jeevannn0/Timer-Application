@@ -1,4 +1,5 @@
 # Timer App 
+(Optimized for ios)
 
 A React Native app to manage workout timers with categories, progress tracking, and history export functionality. The app supports dark mode and uses `AsyncStorage` for persistent data storage.
 
@@ -43,7 +44,7 @@ A React Native app to manage workout timers with categories, progress tracking, 
 
 4. **Start the development server**:
    ```bash
-   npx expo start
+   npx expo start  / npm start
    ```
 
 5. **Run the App on Mobile**:
