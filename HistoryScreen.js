@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
 const HistoryScreen = ({ darkMode }) => {
   const [timers, setTimers] = useState([]);
@@ -25,7 +26,11 @@ const HistoryScreen = ({ darkMode }) => {
       const json = JSON.stringify(timers, null, 2);
       const fileUri = FileSystem.documentDirectory + 'timer_history.json';
       await FileSystem.writeAsStringAsync(fileUri, json);
-      alert('Timer history exported successfully!');
+      await Sharing.shareAsync(fileUri, {
+        mimeType: 'application/json',
+        dialogTitle: 'Export Timer History',
+        UTI: 'public.json'
+      });
     } catch (error) {
       console.error('Error exporting history:', error);
       alert('Failed to export timer history.');
@@ -50,7 +55,11 @@ const HistoryScreen = ({ darkMode }) => {
           </View>
         )}
       />
-      <Button title="Export Timer History" onPress={exportHistory} />
+      <Button 
+        title="Export Timer History" 
+        onPress={exportHistory} 
+        color={darkMode ? '#BB86FC' : '#6200ee'}
+      />
     </View>
   );
 };
@@ -85,6 +94,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    elevation: 3,
   },
   darkItem: {
     backgroundColor: '#1e1e1e',
@@ -104,6 +114,7 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 14,
     marginTop: 5,
+    opacity: 0.8,
   },
   darkCategoryText: {
     color: '#cccccc',
